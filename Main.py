@@ -1,5 +1,5 @@
 # Encrypting function
-def encrypt(shift,):
+def encrypt(shift, text):
     
     print("Function Called")
 
@@ -7,9 +7,19 @@ def encrypt(shift,):
 def decrypt(shift, text):
     i = 0
     decrypted= []
+    inter1 = []
+    inter2 = []
     while i in range(len(text)):
-        print()
-
+        inter1.append(ord(text[i]))
+        if inter1[i] == 97:
+            inter2.append(123- shift)
+        else:
+            inter2.append(inter1[i]-shift)
+        decrypted.append(chr(inter2[i]))
+        i+=1
+    print(* inter1, sep=";") # DEBUG only
+    print(* inter2, sep=";") # DEBUG only
+    print(* decrypted, sep=";") # DEBUG only
     print("Function Called")
 
 
@@ -20,7 +30,7 @@ def txlist(text):
     while i in range(len(text)) :
         out.append(text[i])
         i+= 1
-    #print(out) # DEBUG only
+    print(out) # DEBUG only
     return(out)
 
 # CLI
