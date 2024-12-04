@@ -1,13 +1,32 @@
 # Encrypting function
-def encrypt(shift):
+def encrypt(shift,):
+    
     print("Function Called")
 
 # Decrypting function
-def decrypt(shift):
+def decrypt(shift, text):
+    i = 0
+    decrypted= []
+    while i in range(len(text)):
+        print()
+
     print("Function Called")
+
+
+# Inputed text to list function
+def txlist(text):
+    i = 0
+    out = []
+    while i in range(len(text)) :
+        out.append(text[i])
+        i+= 1
+    #print(out) # DEBUG only
+    return(out)
 
 # CLI
 print("Witaj w narzędziu do dekodowania i kodowania szyfru Cezara!")
+text = txlist(input("Podaj tekst do odszyfrowania: ").lower())
+print()
 print("Moliwe tryby działania:")
 print()
 print("1. Szyfrowanie")
@@ -22,7 +41,7 @@ match mode:
         if lettershft <= 0: # Incorrect lettershift number
             print("Nieoprawna wartość, spróbój ponownie! ")
         else:
-            encrypt(lettershft)
+            encrypt(lettershft, text)
     case 2:
         lettershft = int(input("Podaj przesunięcie(klucz) zaszyfrowanej wiadomości (Podanie 0 spowoduje, ze program będzie deszyfrował w z przesunięciami 1-26)"))
         if lettershft <0: # incorrect lettershift handler
@@ -30,9 +49,9 @@ match mode:
         elif lettershft == 0: # No shift decrypt
             i = 1
             while i in range(1,27):
-                decrypt(i)
+                decrypt(i, text)
                 i+= 1
-        else:
-            decrypt(lettershft)
+        else: # Default option
+            decrypt(lettershft, text)
     case _: # Unexpected value handler
         print("Niepoprawna wartość, proszę spróbować ponownie")
