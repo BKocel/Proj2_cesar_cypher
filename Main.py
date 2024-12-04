@@ -17,21 +17,28 @@ def decrypt(shift, text):
             inter2.append(inter1[i]-shift)
         decrypted.append(chr(inter2[i]))
         i+=1
-    print(* inter1, sep=";") # DEBUG only
-    print(* inter2, sep=";") # DEBUG only
-    print(* decrypted, sep=";") # DEBUG only
-    print("Function Called")
+    return(decrypted)
+    # print(* inter1, sep=";") # DEBUG only
+    # print(* inter2, sep=";") # DEBUG only
+    # print(* decrypted, sep=";") # DEBUG only
+    # print("Function Called") # for DEBUG only
 
 
-# Inputed text to list function
+# Input text to list function
 def txlist(text):
     i = 0
     out = []
     while i in range(len(text)) :
         out.append(text[i])
         i+= 1
-    print(out) # DEBUG only
+    # print(out) # DEBUG only
     return(out)
+
+# Output list to text function
+def listtx(list):
+    out = ''.join(str(x) for x in list)
+
+    print("Twoja zaszyfrowana / odszyfrowana wiadomość to: "+out) 
 
 # CLI
 print("Witaj w narzędziu do dekodowania i kodowania szyfru Cezara!")
@@ -59,9 +66,9 @@ match mode:
         elif lettershft == 0: # No shift decrypt
             i = 1
             while i in range(1,27):
-                decrypt(i, text)
+                listtx(decrypt(i, text))
                 i+= 1
         else: # Default option
-            decrypt(lettershft, text)
+            listtx(decrypt(lettershft, text))
     case _: # Unexpected value handler
         print("Niepoprawna wartość, proszę spróbować ponownie")
