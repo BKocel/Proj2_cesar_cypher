@@ -1,6 +1,22 @@
 # Encrypting function
 def encrypt(shift, text):
-    
+    i = 0
+    decrypted= []
+    inter1 = []
+    inter2 = []
+    while i in range(len(text)):
+        inter1.append(ord(text[i]))
+        if inter1[i] == 122:
+            inter2.append(96 +shift)
+        else:
+            inter2.append(inter1[i]+shift)
+        decrypted.append(chr(inter2[i]))
+        i+=1
+    return(decrypted)
+    # print(* inter1, sep=";") # DEBUG only
+    # print(* inter2, sep=";") # DEBUG only
+    # print(* decrypted, sep=";") # DEBUG only
+    # print("Function Called") # for DEBUG only
     print("Function Called")
 
 # Decrypting function
@@ -37,7 +53,6 @@ def txlist(text):
 # Output list to text function
 def listtx(list):
     out = ''.join(str(x) for x in list)
-
     print("Twoja zaszyfrowana / odszyfrowana wiadomość to: "+out) 
 
 # CLI
