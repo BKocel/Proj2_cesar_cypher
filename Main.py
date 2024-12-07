@@ -1,23 +1,28 @@
 # Encrypting function
 def encrypt(shift, text):
     i = 0
-    decrypted= []
+    encrypted= []
     inter1 = []
     inter2 = []
     while i in range(len(text)):
         inter1.append(ord(text[i]))
-        if inter1[i] == 122:
-            inter2.append(96 +shift)
+        if inter1[i] + shift > 122:
+            shift2 = inter1[i] - 122
+            inter2.append(96 +shift + shift2)
+        elif inter1[i] < 97:
+            inter2.append(inter1[i])
+        elif inter1[i] > 122:
+            inter2.append(inter1[i])
         else:
             inter2.append(inter1[i]+shift)
-        decrypted.append(chr(inter2[i]))
+        encrypted.append(chr(inter2[i]))
         i+=1
-    return(decrypted)
+    return(encrypted)
     # print(* inter1, sep=";") # DEBUG only
     # print(* inter2, sep=";") # DEBUG only
-    # print(* decrypted, sep=";") # DEBUG only
-    # print("Function Called") # for DEBUG only
-    print("Function Called")
+    # print(* encrypted, sep=";") # DEBUG only
+    
+    
 
 # Decrypting function
 def decrypt(shift, text):
@@ -28,7 +33,11 @@ def decrypt(shift, text):
     while i in range(len(text)):
         inter1.append(ord(text[i]))
         if inter1[i] == 97:
-            inter2.append(123- shift)
+            inter2.append(122 - shift)
+        elif inter1[i] < 97:
+            inter2.append(inter1[i])
+        elif inter1[i] > 122:
+            inter2.append(inter1[i])
         else:
             inter2.append(inter1[i]-shift)
         decrypted.append(chr(inter2[i]))
@@ -47,13 +56,13 @@ def txlist(text):
     while i in range(len(text)) :
         out.append(text[i])
         i+= 1
-    # print(out) # DEBUG only
+    #print(out) # DEBUG only
     return(out)
 
 # Output list to text function
 def listtx(list):
     out = ''.join(str(x) for x in list)
-    print("Twoja zaszyfrowana / odszyfrowana wiadomość to: "+out) 
+    return(out)
 
 # CLI
 print("Witaj w narzędziu do dekodowania i kodowania szyfru Cezara!")
@@ -73,17 +82,19 @@ match mode:
         if lettershft <= 0: # Incorrect lettershift number
             print("Nieoprawna wartość, spróbój ponownie! ")
         else:
-            encrypt(lettershft, text)
+            print(listtx(encrypt(lettershft, text)))
     case 2:
-        lettershft = int(input("Podaj przesunięcie(klucz) zaszyfrowanej wiadomości (Podanie 0 spowoduje, ze program będzie deszyfrował w z przesunięciami 1-26)"))
+        lettershft = int(input("Podaj przesunięcie(klucz) zaszyfrowanej wiadomości (Podanie 0 spowoduje, ze program będzie deszyfrował w z przesunięciami 1-26): "))
         if lettershft <0: # incorrect lettershift handler
             print("Nieoprawna wartość, spróbój ponownie! ") 
         elif lettershft == 0: # No shift decrypt
             i = 1
+            
             while i in range(1,27):
-                listtx(decrypt(i, text))
+                print("Rrzesunięcie: " + str(i))
+                print("Odszyfrowana wiadomość" +listtx(decrypt(i, text)))
                 i+= 1
         else: # Default option
-            listtx(decrypt(lettershft, text))
+            print(listtx(decrypt(lettershft, text)))
     case _: # Unexpected value handler
         print("Niepoprawna wartość, proszę spróbować ponownie")
