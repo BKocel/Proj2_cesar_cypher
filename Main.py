@@ -34,9 +34,9 @@ def decrypt(shift, text):
         inter1.append(ord(text[i]))
         if inter1[i] - shift <= 97:
             shift2 = inter1[i] - 97
-            print(shift2)
+            #print(shift2) #for DEBUG only
             inter2.append(122 - shift2)
-            print(inter2[i])
+            #print(inter2[i]) # for DEBUG only
         elif inter1[i] < 97:
             inter2.append(inter1[i])
         elif inter1[i] > 122:
