@@ -96,7 +96,8 @@ match mode:
             while i in range(1,27):
                 print("Przesunięcie: " + str(i))
                 i += 1
-                print("Odszyfrowana wiadomość:      " +listtx(decrypt(i, text)))
+                print("Odszyfrowana wiadomość:   " +listtx(decrypt(i, text)))
+            
                 
                 
         else: # Default option
