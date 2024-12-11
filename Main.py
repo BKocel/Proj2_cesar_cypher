@@ -69,7 +69,7 @@ def listtx(list):
 
 # CLI
 print("Witaj w narzędziu do dekodowania i kodowania szyfru Cezara!")
-text = txlist(input("Podaj tekst do odszyfrowania: ").lower())
+text = txlist(input("Podaj tekst do odszyfrowania / zaszyfrowania: ").lower())
 print()
 print("Moliwe tryby działania:")
 print()
