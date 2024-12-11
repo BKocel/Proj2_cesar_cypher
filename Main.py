@@ -37,7 +37,7 @@ def decrypt(shift, text):
         elif inter1[i] - shift <= 96:
             shift2 = inter1[i] - 97
             #print(shift2) #for DEBUG only
-            inter2.append(122 - shift2)
+            inter2.append(122 - shift2) # somenthing here doesn't work!II
             #print(inter2[i]) # for DEBUG only
         elif inter1[i] > 122:
             inter2.append(inter1[i])
@@ -91,14 +91,12 @@ match mode:
         if lettershft <0: # incorrect lettershift handler
             print("Nieoprawna wartość, spróbój ponownie! ") 
         elif lettershft == 0: # No shift decrypt
-            i = 1
-            
-            while i in range(1,27):
+            current = 1
+            for i in range(1,27):
                 print("Przesunięcie: " + str(i))
-                i += 1
-                print("Odszyfrowana wiadomość:   " +listtx(decrypt(i, text)))
             
-                
+                print("Odszyfrowana wiadomość:   " +listtx(decrypt(i, text)))
+                current = current + 1
                 
         else: # Default option
             print(listtx(decrypt(lettershft, text)))
