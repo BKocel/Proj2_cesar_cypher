@@ -26,6 +26,7 @@ def encrypt(shift, text):
 
 # Decrypting function
 def decrypt(shift, text):
+
     i = 0
     decrypted= []
     inter1 = []
@@ -35,9 +36,11 @@ def decrypt(shift, text):
         if inter1[i] < 97:
             inter2.append(inter1[i])
         elif inter1[i] - shift <= 96:
-            shift2 = inter1[i] - 97
+            #shift2 = inter1[i] - 97
             #print(shift2) #for DEBUG only
-            inter2.append(122 - shift2) # somenthing here doesn't work!II
+            #inter2.append(122 - shift2) # somenthing here doesn't work!II
+            inter2.append(inter1[i]+26 - shift)
+            #print(inter1[i]+26 - shift)
             #print(inter2[i]) # for DEBUG only
         elif inter1[i] > 122:
             inter2.append(inter1[i])
@@ -102,3 +105,5 @@ match mode:
             print(listtx(decrypt(lettershft, text)))
     case _: # Unexpected value handler
         print("Niepoprawna wartość, proszę spróbować ponownie")
+
+        # hours wasted: ~11, i lost count
