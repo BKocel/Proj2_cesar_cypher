@@ -6,11 +6,12 @@ def encrypt(shift, text):
     inter2 = []
     while i in range(len(text)):
         inter1.append(ord(text[i]))
-        if inter1[i] + shift > 122:
+        if inter1[i] < 97:
+            inter2.append(inter1[i])
+            
+        elif inter1[i] + shift > 122:
             shift2 = inter1[i] - 122
             inter2.append(96 +shift + shift2)
-        elif inter1[i] < 97:
-            inter2.append(inter1[i])
         elif inter1[i] > 122:
             inter2.append(inter1[i])
         else:
@@ -37,6 +38,8 @@ def decrypt(shift, text):
             inter2.append(inter1[i])
         elif inter1[i] > 122:
             inter2.append(inter1[i])
+
+
         elif inter1[i] - shift <= 96:
             #shift2 = inter1[i] - 97
             #print(shift2) #for DEBUG only
@@ -44,7 +47,7 @@ def decrypt(shift, text):
             inter2.append(inter1[i]+26 - shift)
             #print(inter1[i]+26 - shift)
             #print(inter2[i]) # for DEBUG only
-
+            
         else:
             inter2.append(inter1[i]-shift)
         decrypted.append(chr(inter2[i]))
